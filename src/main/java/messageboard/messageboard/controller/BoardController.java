@@ -19,6 +19,7 @@ public class BoardController {
 
     @PostMapping("/board")
     public Long create(@RequestBody BoardCreateRequestDto requestDto) {
+
         return boardService.create(requestDto);
     }
 
