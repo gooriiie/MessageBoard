@@ -17,8 +17,9 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public Long create(BoardCreateRequestDto requestDto) {
-        return boardRepository.save(requestDto.toEntity()).getId();
+    public Long create(Board board) {
+        boardRepository.save(board);
+        return board.getId();
     }
 
     @Transactional

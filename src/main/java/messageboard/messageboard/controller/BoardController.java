@@ -1,12 +1,10 @@
 package messageboard.messageboard.controller;
 
 import lombok.RequiredArgsConstructor;
-import messageboard.messageboard.domain.BoardCreateRequestDto;
-import messageboard.messageboard.domain.BoardListResponseDto;
-import messageboard.messageboard.domain.BoardResponseDto;
-import messageboard.messageboard.domain.BoardUpdateRequestDto;
+import messageboard.messageboard.domain.*;
 import messageboard.messageboard.service.BoardService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,14 +15,27 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @PostMapping("/board")
-    public Long create(@RequestBody BoardCreateRequestDto requestDto) {
+    @GetMapping("/board/new")
+    public String createForm(Model model) {
+        model.addAttribute("writeForm", new BoardCreateRequestDto());
+        return "board/writeForm";
+    }
 
-        return boardService.create(requestDto);
+    @PostMapping("/board/new")
+    public String create(BoardCreateRequestDto boardCreateRequestDto) {
+        Board board = new Board();
+        board.setMember(boardCreateRequestDto.getMember());
+        board.setTitle(boardCreateRequestDto.getTitle());
+        board.setContent(boardCreateRequestDto.getContent());
+
+        boardService.create(board);
+
+        return "redirect:/";
     }
 
     @PutMapping("/board/{boardId}")
     public Long update(@PathVariable("boardId") Long boardId, @RequestBody BoardUpdateRequestDto requestDto) {
+
         return boardService.update(boardId, requestDto);
     }
 

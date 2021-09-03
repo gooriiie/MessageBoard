@@ -2,6 +2,7 @@ package messageboard.messageboard.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,10 +10,11 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Board extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "board_id")
     private Long id;
 
@@ -26,7 +28,6 @@ public class Board extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @Builder
     public Board(Member member, String title, String content) {
         this.member = member;
         this.title = title;
