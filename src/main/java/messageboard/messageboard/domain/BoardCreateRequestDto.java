@@ -10,12 +10,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BoardCreateRequestDto {
 
-    private Member member;
+//    private Member member;
+    private String name;
     private String title;
     private String content;
 
-    public BoardCreateRequestDto(Member member, String title, String content) {
-        this.member = member;
+    public BoardCreateRequestDto(String name, String title, String content) {
+        this.name = name;
         this.title = title;
         this.content = content;
     }

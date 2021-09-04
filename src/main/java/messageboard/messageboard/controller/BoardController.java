@@ -21,16 +21,16 @@ public class BoardController {
         return "board/writeForm";
     }
 
-    @PostMapping("/board/new")
+    @PostMapping("/board/register")
     public String create(BoardCreateRequestDto boardCreateRequestDto) {
         Board board = new Board();
-        board.setMember(boardCreateRequestDto.getMember());
+        board.setName(boardCreateRequestDto.getName());
         board.setTitle(boardCreateRequestDto.getTitle());
         board.setContent(boardCreateRequestDto.getContent());
 
         boardService.create(board);
 
-        return "redirect:/";
+        return "redirect:/board/new";
     }
 
     @PutMapping("/board/{boardId}")

@@ -12,7 +12,7 @@ public class BoardResponseDto {
 
     public BoardResponseDto(Board board) {
         this.id = board.getId();
-        this.name = board.getMember().getName();
+        this.name = board.getName();
         this.title = board.getTitle();
         this.content = board.getContent();
     }

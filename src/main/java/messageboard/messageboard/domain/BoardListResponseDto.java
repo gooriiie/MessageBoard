@@ -8,7 +8,7 @@ public class BoardListResponseDto {
 
     public BoardListResponseDto(Board board) {
         this.id = board.getId();
-        this.name = board.getMember().getName();
+        this.name = board.getName();
         this.title = board.getTitle();
     }
 }

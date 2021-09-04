@@ -18,9 +18,12 @@ public class Board extends BaseTimeEntity {
     @Column(name = "board_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "member_id")
+//    private Member member;
+
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false)
     private String title;
@@ -28,8 +31,8 @@ public class Board extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    public Board(Member member, String title, String content) {
-        this.member = member;
+    public Board(String name, String title, String content) {
+        this.name = name;
         this.title = title;
         this.content = content;
     }

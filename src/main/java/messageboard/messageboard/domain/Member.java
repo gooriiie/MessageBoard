@@ -31,8 +31,8 @@ public class Member {
     @Column(length = 13)
     private String contact;
 
-    @OneToMany(mappedBy = "member")
-    private List<Board> boards = new ArrayList<>();
+//    @OneToMany(mappedBy = "member")
+//    private List<Board> boards = new ArrayList<>();
 
     @Builder
     public Member(String name, String password, String email, String contact) {
