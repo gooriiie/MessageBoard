@@ -6,6 +6,7 @@ import messageboard.messageboard.repository.BoardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,9 +41,18 @@ public class BoardService {
     }
 
     public List<BoardListResponseDto> searchAllDesc() {
-        return boardRepository.findAllByOrderByIdDesc().stream()
-                .map(BoardListResponseDto::new)
-                .collect(Collectors.toList());
+        List<Board> boardList = boardRepository.findAllByOrderByIdDesc();
+        List<BoardListResponseDto> boardListResponseDto = new ArrayList<>();
+        for (Board board : boardList) {
+            boardListResponseDto.add(new BoardListResponseDto(board));
+        }
+
+        return boardListResponseDto;
+
+//
+//        return boardRepository.findAllByOrderByIdDesc().stream()
+//                .map(BoardListResponseDto::new)
+//                .collect(Collectors.toList());
     }
 
     @Transactional

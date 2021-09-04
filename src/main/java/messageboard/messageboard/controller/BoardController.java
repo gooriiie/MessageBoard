@@ -30,7 +30,14 @@ public class BoardController {
 
         boardService.create(board);
 
-        return "redirect:/board/new";
+        return "redirect:/board";
+    }
+
+    @GetMapping("/board")
+    public String searchAllDesc(Model model) {
+        List<BoardListResponseDto> boardListResponseDto = boardService.searchAllDesc();
+        model.addAttribute("boardListResponseDto", boardListResponseDto);
+        return "board/list";
     }
 
     @PutMapping("/board/{boardId}")
@@ -44,10 +51,6 @@ public class BoardController {
         return boardService.searchById(boardId);
     }
 
-    @GetMapping("/board")
-    public List<BoardListResponseDto> searchAllDesc() {
-        return boardService.searchAllDesc();
-    }
 
     @DeleteMapping("/board/{boardId}")
     public void delete(@PathVariable("boardId") Long boardId) {

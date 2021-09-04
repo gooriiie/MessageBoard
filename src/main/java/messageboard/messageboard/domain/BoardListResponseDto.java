@@ -1,5 +1,9 @@
 package messageboard.messageboard.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
 public class BoardListResponseDto {
 
     private Long id;
