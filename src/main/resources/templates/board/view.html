@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
 <th:block layout:fragment="title">
-    <title>thiThe page is a write page</title>
+    <title>this is view page</title>
 </th:block>
 
 <th:block layout:fragment="content">
     <div class="card-content">
-        <form class="form-horizontal" th:action="@{/board/register}" th:object="${writeForm}" method="post">
-
+        <form class="form-horizontal form-view" th:object="${boardResponseDto}">
             <div class="form-group">
                 <label class="col-sm-2 control-label">제목</label>
                 <div class="col-sm-10">
-                    <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력해 주세요." />
+                    <p class="form-control" th:text="*{title}"></p>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">이름</label>
                 <div class="col-sm-10">
-                    <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력해 주세요." />
+                    <p class="form-control" th:text="*{name}"></p>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">내용</label>
                 <div class="col-sm-10">
-                    <textarea th:field="*{content}" class="form-control" placeholder="내용을 입력해 주세요."></textarea>
+                    <p class="form-control" th:text="*{content}"></p>
                 </div>
             </div>
-
-            <div class="btn_wrap text-center">
-                <a th:href="@{/board}" class="btn btn-default waves-effect waves-light">뒤로가기</a>
-                <button type="submit" class="btn btn-primary waves-effect waves-light">저장하기</button>
-            </div>
         </form>
+
+        <div class="btn_wrap text-center">
+            <a th:href="@{/board}" class="btn btn-default waves-effect waves-light">뒤로가기</a>
+            <a th:href="@{/board/update( id=${boardResponseDto.id} )}" class="btn btn-primary waves-effect waves-light">수정하기</a>
+            <button type="button" class="btn btn-danger waves-effect waves-light" th:onclick="deleteBoard([[ ${boardResponseDto.id} ]])">삭제하기</button>
+        </div>
     </div>
     <!-- /.card-content -->
 </th:block>

@@ -40,6 +40,13 @@ public class BoardController {
         return "board/list";
     }
 
+    @GetMapping("/board/view")
+    public String openBoard(@RequestParam(value = "id") Long boardId, Model model) {
+        BoardResponseDto boardResponseDto = boardService.searchById(boardId);
+        model.addAttribute("boardResponseDto", boardResponseDto);
+        return "board/view";
+    }
+
     @PutMapping("/board/{boardId}")
     public Long update(@PathVariable("boardId") Long boardId, @RequestBody BoardUpdateRequestDto requestDto) {
 
